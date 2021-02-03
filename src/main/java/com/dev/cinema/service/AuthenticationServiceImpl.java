@@ -21,8 +21,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 return user.get();
             }
         }
-        throw new AuthenticationException("Can't authenticate by email " + email
-            + " and password " + password);
+        throw new AuthenticationException("Failed to authenticate, wrong email or password");
     }
 
     @Override
