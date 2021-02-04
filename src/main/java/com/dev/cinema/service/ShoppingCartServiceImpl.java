@@ -17,7 +17,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Inject
     private TicketDao ticketDao;
 
-    //TicketDao. Hint: use this dao in the ShoppingCartService, method addSession
     @Override
     public void addSession(MovieSession movieSession, User user) {
         Ticket ticket = new Ticket();
