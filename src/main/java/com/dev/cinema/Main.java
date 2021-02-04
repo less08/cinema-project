@@ -10,6 +10,7 @@ import com.dev.cinema.service.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
+import com.dev.cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -46,5 +47,12 @@ public class Main {
         System.out.println(bobRegister);
         User bobLogin = authenticationService.login("bob@gmail.com", "bobpass");
         System.out.println(bobLogin);
+
+        ShoppingCartService shoppingCartService =
+                (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        shoppingCartService.addSession(movieSession,bobLogin);
+        System.out.println(shoppingCartService.getByUser(bobLogin));
+        shoppingCartService.clear(shoppingCartService.getByUser(bobLogin));
+        System.out.println(shoppingCartService.getByUser(bobLogin));
     }
 }
