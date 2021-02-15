@@ -7,12 +7,19 @@ import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class MovieSessionMapper {
     private MovieService movieService;
     private CinemaHallService cinemaHallService;
+
+    @Autowired
+    public MovieSessionMapper(MovieService movieService, CinemaHallService cinemaHallService) {
+        this.movieService = movieService;
+        this.cinemaHallService = cinemaHallService;
+    }
 
     public MovieSessionResponseDto createDtoFromEntity(MovieSession movieSession) {
         MovieSessionResponseDto dto = new MovieSessionResponseDto();
