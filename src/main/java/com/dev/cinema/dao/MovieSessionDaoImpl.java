@@ -4,6 +4,7 @@ import com.dev.cinema.exception.DataProcessException;
 import com.dev.cinema.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -100,6 +101,18 @@ public class MovieSessionDaoImpl implements MovieSessionDao {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public Optional<MovieSession> getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<MovieSession> query = session.createQuery("from MovieSession where id=:id",
+                    MovieSession.class)
+                    .setParameter("id", id);
+            return query.uniqueResultOptional();
+        } catch (Exception e) {
+            throw new DataProcessException("Can`t find movie session with this id: " + id, e);
         }
     }
 }
