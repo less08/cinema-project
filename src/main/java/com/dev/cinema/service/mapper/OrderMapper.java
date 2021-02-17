@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrderMapper {
-
     public OrderResponseDto createDtoFromEntity(Order order) {
         OrderResponseDto dto = new OrderResponseDto();
         dto.setId(order.getId());
