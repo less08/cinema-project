@@ -1,7 +1,13 @@
 package com.dev.cinema.model.dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class MovieRequestDto {
+    @NotNull
+    @Min(4)
     private String title;
+    @NotNull
     private String description;
 
     public String getTitle() {
