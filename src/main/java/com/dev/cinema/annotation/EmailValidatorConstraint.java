@@ -7,10 +7,6 @@ public class EmailValidatorConstraint implements ConstraintValidator<EmailValida
     public static final String REGEX = "[a-zA-Z]+";
 
     @Override
-    public void initialize(EmailValidator constraintAnnotation) {
-    }
-
-    @Override
     public boolean isValid(String contactField,
                            ConstraintValidatorContext constraintValidatorContext) {
         return contactField != null && contactField.matches(REGEX);
