@@ -1,6 +1,9 @@
 package com.dev.cinema.service;
 
+import com.dev.cinema.model.Role;
+import com.dev.cinema.model.RoleType;
 import com.dev.cinema.model.User;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +11,15 @@ import org.springframework.stereotype.Service;
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserService userService;
     private final ShoppingCartService shoppingCartService;
+    private final RoleService roleService;
 
     @Autowired
     public AuthenticationServiceImpl(UserService userService,
-                                     ShoppingCartService shoppingCartService) {
+                                     ShoppingCartService shoppingCartService,
+                                     RoleService roleService) {
         this.userService = userService;
         this.shoppingCartService = shoppingCartService;
+        this.roleService = roleService;
     }
 
     @Override
@@ -21,8 +27,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+        user.setRoles(getUserRoles());
         User userFromDB = userService.add(user);
         shoppingCartService.registerNewShoppingCart(userFromDB);
         return userFromDB;
+    }
+
+    private List<Role> getUserRoles() {
+        return List.of(roleService.getRoleByName(RoleType.USER.toString()));
     }
 }
