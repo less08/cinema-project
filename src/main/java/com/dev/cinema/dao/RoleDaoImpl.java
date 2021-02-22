@@ -2,6 +2,7 @@ package com.dev.cinema.dao;
 
 import com.dev.cinema.exception.DataProcessException;
 import com.dev.cinema.model.Role;
+import com.dev.cinema.model.RoleType;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,7 +44,7 @@ public class RoleDaoImpl implements RoleDao {
     public Role getRoleByName(String roleName) {
         try (Session session = sessionFactory.openSession()) {
             Query<Role> query = session.createQuery("from Role where roleType=:roleName",
-                    Role.class).setParameter("roleName", roleName);
+                    Role.class).setParameter("roleName", RoleType.valueOf(roleName));
             return query.getSingleResult();
         } catch (Exception e) {
             throw new DataProcessException("Can`t find role named: " + roleName, e);

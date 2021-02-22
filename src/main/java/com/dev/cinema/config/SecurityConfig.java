@@ -27,18 +27,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/register").permitAll()
-                .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().permitAll()
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().disable();;
+            .antMatchers(HttpMethod.POST, "/register").permitAll()
+            .antMatchers(HttpMethod.GET, "/cinema-halls").hasAnyRole("ADMIN","USER")
+            .antMatchers(HttpMethod.POST, "/cinema-halls").hasRole("ADMIN")
+            .antMatchers(HttpMethod.GET, "/movies").hasAnyRole("ADMIN","USER")
+            .antMatchers(HttpMethod.POST, "/movies").hasRole("ADMIN")
+            .antMatchers(HttpMethod.GET, "/movie-sessions/available").hasAnyRole("ADMIN","USER")
+            .antMatchers(HttpMethod.GET, "/movie-sessions/{id}").hasAnyRole("ADMIN","USER")
+            .antMatchers(HttpMethod.POST, "/movie-sessions").hasRole("ADMIN")
+            .antMatchers(HttpMethod.PUT, "/movie-sessions/{id}").hasRole("ADMIN")
+            .antMatchers(HttpMethod.DELETE, "/movie-sessions/{id}").hasRole("ADMIN")
+            .antMatchers(HttpMethod.GET, "/orders").hasRole("USER")
+            .antMatchers(HttpMethod.POST, "/orders/complete").hasRole("USER")
+            .antMatchers(HttpMethod.POST, "/shopping-carts/movie-sessions").hasRole("USER")
+            .antMatchers(HttpMethod.GET, "/shopping-carts/by-user").hasRole("USER")
+            .antMatchers(HttpMethod.GET, "/users/by-email").hasRole("ADMIN")
+            .anyRequest().authenticated()
+            .and()
+            .formLogin().permitAll()
+            .and()
+            .httpBasic()
+            .and()
+            .csrf().disable();
+        ;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.dev.cinema.service;
 
-import com.dev.cinema.model.Role;
 import com.dev.cinema.model.RoleType;
 import com.dev.cinema.model.User;
 import java.util.List;
@@ -27,13 +26,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
-        user.setRoles(getUserRoles());
+        user.setRoles(List.of(roleService.getRoleByName(RoleType.USER.toString())));
         User userFromDB = userService.add(user);
         shoppingCartService.registerNewShoppingCart(userFromDB);
         return userFromDB;
-    }
-
-    private List<Role> getUserRoles() {
-        return List.of(roleService.getRoleByName(RoleType.USER.toString()));
     }
 }

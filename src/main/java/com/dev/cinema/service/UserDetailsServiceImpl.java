@@ -23,12 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> userOptional = userService.findByEmail(email);
-
-        if (userOptional.isEmpty()) {
-            throw new UsernameNotFoundException("User with email " + email + "was not found");
-        }
-
-        User user = userOptional.get();
+        User user = userOptional.orElseThrow(() ->
+                new UsernameNotFoundException("User with email " + email + "was not found"));
         UserBuilder builder = withUsername(user.getEmail());
         builder.password(user.getPassword());
         builder.roles(user.getRoles()
