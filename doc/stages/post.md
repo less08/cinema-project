@@ -10,7 +10,7 @@ Adding a new stage to database
 
 **Allowed for roles** : ADMIN
 
-**Data example** :
+**Request body example** :
 
 ```json
 {

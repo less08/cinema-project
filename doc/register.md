@@ -8,7 +8,7 @@ Register a new user
 
 **Auth required** : NO
 
-##Data example
+**Request body example**
 
 ```json
 {

@@ -10,7 +10,7 @@ Adding a new concert to database
 
 **Allowed for roles** : ADMIN
 
-**Data example** :
+**Request body example** :
 
 ```json
 {

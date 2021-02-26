@@ -18,7 +18,7 @@ Get list of all available concert sessions
 **Query params example**:
 
     concertId=1
-    date=21.02.2021`
+    date=21.02.2021
     
 ## Success Response
 

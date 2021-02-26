@@ -8,7 +8,7 @@
 
 **Allowed for roles** : USER
 
-**Data example** : No data
+**Request body example** : No data
 
 ## Success Responses
 **Code** : `200 OK`

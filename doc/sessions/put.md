@@ -10,7 +10,7 @@ Update session in database
 
 **Allowed for roles** : ADMIN
 
-**Data example** :
+**Request body example** :
 ```json
 {
      "stageId": 1,

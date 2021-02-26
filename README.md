@@ -39,11 +39,13 @@ For using endpoint with Admin role you should login as admin first.
 	
 #### Login endpoint	
 	
-* Login `POST /login`
+**URL** : `/login`
 
-**Content example**
+**Method** : `POST`
 
-Form data:
+**Content type**: application/x-www-form-urlencoded
+
+**Request body example**
 
     username=admin&password=admin
 
