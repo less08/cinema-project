@@ -73,7 +73,7 @@ Closed endpoints require Authorization (How to login described in  App usage gui
 * [Delete concert session](doc/sessions/delete.md) : `DELETE /concert-sesions/{id}`
 * [Get user with email](doc/users/get.md) : `GET /users/by-email`
 
-### Endpoints for user
+#### Endpoints for user
 * [Get orders](doc/order/get.md) : `GET /orders`
 * [Confirm order](doc/order/post.md) : `POST /orders/complete`
 * [Add concert session to cart](doc/cart/post.md) : `POST /shopping-carts`
